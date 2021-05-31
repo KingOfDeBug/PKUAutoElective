@@ -143,12 +143,12 @@ class ElectiveClient(BaseClient):
         )
         return r
 
-    def get_SupplyCancel(self, **kwargs):
+    def get_SupplyCancel(self, username, **kwargs):
         """ 补退选 """
         headers = _get_headers_with_referer(kwargs)
         headers["Cache-Control"] = "max-age=0"
         r = self._get(
-            url=ElectiveURL.SupplyCancel,
+            url=ElectiveURL.SupplyCancel +'?xh='+ username,
             headers=headers,
             hooks=_hooks_check_title,
             **kwargs,
